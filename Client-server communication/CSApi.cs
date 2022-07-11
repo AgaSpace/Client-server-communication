@@ -36,7 +36,7 @@ namespace CSConnection
         /// <param name="ignoreClient"></param>
         public static void Send(string key, byte[] data, int ignoreClient = -1)
         {
-            NetPacket packet = new NetPacket(SCModule.Id, data.Length);
+            NetPacket packet = new NetPacket(SCModule.Id, ASCIIEncoding.Unicode.GetByteCount(key) + data.Length);
 
             packet.Writer.Write(key);
             packet.Writer.Write(data);
@@ -67,7 +67,7 @@ namespace CSConnection
         /// <param name="data">Bytes</param>
         public static void SendToClient(string key, int player, byte[] data)
         {
-            NetPacket packet = new NetPacket(SCModule.Id, data.Length);
+            NetPacket packet = new NetPacket(SCModule.Id, ASCIIEncoding.Unicode.GetByteCount(key)+data.Length);
 
             packet.Writer.Write(key);
             packet.Writer.Write(data);
